@@ -16,7 +16,7 @@ const UpdateTaskForm = ({ onClose, task }) => {
       if (res.data.status === true) {
         showUpdateToast()
         setNewTask(res.data.data);
-        navigate("/home")
+        navigate("/")
       } else {
         alert(res.data.message)
       }

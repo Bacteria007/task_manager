@@ -4,6 +4,7 @@ const { jwt, secretKey } = require('../references/custom_refs');
 const authenticateUser = async (req, res, next) => {
     try {
         // Check if Authorization header is present
+        console.log(req.headers);
         const authHeader = req.headers['authorization'];
         if (!authHeader) {
             return res.status(200).json({ message: 'Authorization header is missing', status: false, data: {} });

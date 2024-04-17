@@ -21,7 +21,7 @@ const TaskList = () => {
         setTasks(tasks)
         console.log(res.data.data);
       } else {
-        alert(res.data.message)
+        console.log(res.data.message)
       }
     })
       .catch((error) => {

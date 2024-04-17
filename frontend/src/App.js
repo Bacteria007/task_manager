@@ -11,7 +11,7 @@ import TaskDetail from "./pages/TaskDetail";
 export default function App() {
   const router = createBrowserRouter([
     {
-      path: "/home",
+      path: "/",
       element: <Protected><Dashboard /></Protected>,
     },
     {
@@ -49,6 +49,10 @@ export default function App() {
   );
 }
 
+// DB atlas 
+// task manager
+// aqsahamayun
+// xaIGIXdklQDWWGXG
 
 
 

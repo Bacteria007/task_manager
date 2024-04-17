@@ -29,7 +29,7 @@ function LoginPage() {
                   localStorage.setItem("name", data.name);
                   localStorage.setItem("role", data.role);
                   console.log("User ID and token saved to localStorage:", data._id, data.token);
-                  navigate('/home')
+                  navigate('/')
                 } else {
                   alert(res.data.message)
                 }
@@ -68,11 +68,11 @@ function LoginPage() {
                 <label htmlFor="password" className="block text-sm font-medium leading-6 text-gray-900">
                   Password
                 </label>
-                <div className="text-sm">
+                {/* <div className="text-sm">
                   <a href="#" className="font-semibold text-indigo-600 hover:text-indigo-500">
                     Forgot password?
                   </a>
-                </div>
+                </div> */}
               </div>
               <div className="mt-2">
                 <input

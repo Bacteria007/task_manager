@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 export default async function ApiCaller(url = "", data = {}, token) {
-
+console.log(token);
   try {
     const response = await axios.post(url, data, {
       headers: {

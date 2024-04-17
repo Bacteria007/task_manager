@@ -7,6 +7,7 @@ export const ContextProvider = ({ children }) => {
 
     const statusOptions = ['Todo', 'In Progress', 'Completed']
     const serverUrl = 'http://localhost:8881'
+    // const serverUrl = window.location.origin
     return (
         <AppContext.Provider value={{
             serverUrl, statusOptions

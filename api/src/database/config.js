@@ -1,2 +1,2 @@
 const { mongoose } = require('../references/custom_refs');
-mongoose.connect('mongodb://localhost:27017/TaskManager'); 
+mongoose.connect('mongodb+srv://aqsahamayun:xaIGIXdklQDWWGXG@taskmanager.kjpjeed.mongodb.net/'); 

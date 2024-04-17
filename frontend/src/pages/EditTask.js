@@ -33,7 +33,7 @@ const EditTask = () => {
                 console.log('-------22222222222-----------');
                 showUpdateToast()
                 setTask(res.data.data);
-                navigate("/home")
+                navigate("/")
             } else {
                 alert(res.data.message)
             }

@@ -3,16 +3,17 @@ import PrimaryBtn from "./PrimaryBtn";
 import { useAppContext } from "../context/AppContext";
 import ApiCaller from "../utilities/ApiCaller";
 
-const NewTaskForm = ({onClose}) => {
-  const { statusOptions,serverUrl,token } = useAppContext()
-const[newTask, setNewTask] = useState({
-  title:'',
-  description:'',
-  status:'Todo'
-})
-const addTask=()=>{
-  ApiCaller(`${serverUrl}/task/add`,newTask,token)
-}
+const NewTaskForm = ({ onClose }) => {
+  const { statusOptions, serverUrl, } = useAppContext()
+  const token = localStorage.getItem("token")
+  const [newTask, setNewTask] = useState({
+    title: '',
+    description: '',
+    status: 'Todo'
+  })
+  const addTask = () => {
+    ApiCaller(`${serverUrl}/task/add`, newTask, token)
+  }
   return (
     <div className="overflow-y-auto overflow-x-hidden flex justify-center fixed top-0 right-0 left-0 z-50  w-full  md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div className="relative p-4 w-full max-w-md max-h-full">
@@ -48,7 +49,7 @@ const addTask=()=>{
             </button>
           </div>
           {/* Modal body */}
-          <form className="p-4 md:p-5"  onSubmit={(data)=>console.log(data)}>
+          <form className="p-4 md:p-5" onSubmit={(data) => console.log(data)}>
             <div className="grid gap-4 mb-4 grid-cols-2">
               <div className="col-span-2">
                 <label
@@ -82,7 +83,7 @@ const addTask=()=>{
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
                   value={newTask.status || ''} // Use task.status as the value
                   onChange={(e) => setNewTask({ ...newTask, status: e.target.value })} // Update task.status on change                               
-                  
+
                 >
                   {statusOptions.map((opt) => (
                     <option value={opt}>{opt}</option>
