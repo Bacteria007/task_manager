@@ -8,7 +8,7 @@ const router = express.Router();
 router.post("/add", authenticateUser, async (req, res) => {
     try {
         const { title, description,status } = req.body;
-
+console.log(req.body);
         // Check if the user has permission to add tasks
         const user = await User.findById(req.user._id);
         if (!user.canAddTask()) {

@@ -14,15 +14,21 @@ const UpdateTaskForm = ({ onClose, task }) => {
 
   const updateTask = async () => {
     ApiCaller(`${serverUrl}/task/${task._id}/update`, newTask, token).then((res) => {
+      getAllTasks()
+
       if (res.data.status === true) {
         showUpdateToast()
         setNewTask(res.data.data);
         getAllTasks()
         navigate("/")
       } else {
+        getAllTasks()
+
         alert(res.data.message)
       }
     }).catch((err) => {
+      getAllTasks()
+
       alert(err)
     })
 

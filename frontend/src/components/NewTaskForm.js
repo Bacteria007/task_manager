@@ -15,11 +15,14 @@ const NewTaskForm = ({ onClose }) => {
   const addTask = () => {
     console.log(newTask);
     ApiCaller(`${serverUrl}/task/add`,newTask , token).then((res) => {
+      getAllTasks()
+
       if (res.data.status === true) {
         console.log('savedTask', res.data.data);
         getAllTasks()
       } else {
         alert(res.data.message);
+        getAllTasks()
 
       }
     })
