@@ -11,8 +11,6 @@ app.use(cors({
 }))
 const path =require("path")
 app.use(express.json());
-app.use(express.static(path.resolve(__dirname,"build")))
-console.log(path.resolve(__dirname,"build"));
 
 module.exports = {
     app,
