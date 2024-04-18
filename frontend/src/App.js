@@ -7,6 +7,7 @@ import AppContext, { ContextProvider } from "./context/AppContext";
 import EditTask from "./pages/EditTask";
 import Protected from "./pages/Protected";
 import TaskDetail from "./pages/TaskDetail";
+import Profile from "./pages/Profile";
 
 export default function App() {
   const router = createBrowserRouter([
@@ -23,6 +24,11 @@ export default function App() {
       path: "/signup",
       element:
         <SignupPage />,
+    },
+    {
+      path: "/profile",
+      element:
+        <Protected>  <Profile/></Protected>
     },
     {
       path: "/edit-task/:id",
@@ -49,7 +55,7 @@ export default function App() {
   );
 }
 
-// DB atlas 
+// DB atlas
 // task manager
 // aqsahamayun
 // xaIGIXdklQDWWGXG

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import PrimaryBtn from "../components/PrimaryBtn";
+import {PrimaryBtn} from "../components/PrimaryBtn";
 import { useAppContext } from "../context/AppContext";
 import { useLocation, useNavigate, useParams } from "react-router-dom";
 import ApiCaller from "../utilities/ApiCaller";
