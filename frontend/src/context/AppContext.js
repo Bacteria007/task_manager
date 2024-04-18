@@ -6,7 +6,7 @@ export const useAppContext = () => useContext(AppContext);
 export const ContextProvider = ({ children }) => {
 
     const statusOptions = ['Todo', 'In Progress', 'Completed']
-    const serverUrl = 'http://localhost:8881'
+    const serverUrl = 'https://task-manager-api-ten.vercel.app'
     // const serverUrl = window.location.origin
     return (
         <AppContext.Provider value={{
