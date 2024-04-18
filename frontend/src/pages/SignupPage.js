@@ -9,7 +9,7 @@ function SignupPage() {
   const navigate = useNavigate();
 
   const {
-    register,handleSubmit, formState: { errors } } = useForm();
+    register, handleSubmit, formState: { errors } } = useForm();
   const handleSignup = async (data) => {
     try {
       const response = await ApiCaller(`${serverUrl}/auth/signup`, {
@@ -24,6 +24,7 @@ function SignupPage() {
         localStorage.setItem("userId", responseData.data._id);
         localStorage.setItem("token", responseData.data.token);
         localStorage.setItem("name", responseData.data.name);
+        localStorage.setItem("email",responseData.data.email);
         localStorage.setItem("role", responseData.data.role);
         console.log("User ID and token saved to localStorage:", responseData.data._id, responseData.data.token);
         navigate('/');
@@ -48,7 +49,7 @@ function SignupPage() {
           <form
             noValidate
             className="space-y-6"
-            onSubmit={handleSubmit((data)=>handleSignup(data))}
+            onSubmit={handleSubmit((data) => handleSignup(data))}
           >
             <div>
               <label

@@ -28,6 +28,7 @@ function LoginPage() {
                   localStorage.setItem("token", data.token);
                   localStorage.setItem("name", data.name);
                   localStorage.setItem("role", data.role);
+                  localStorage.setItem("email", data.email);
                   console.log("User ID and token saved to localStorage:", data._id, data.token);
                   navigate('/')
                 } else {
