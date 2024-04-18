@@ -11,7 +11,7 @@ const TaskList = () => {
     return (
       <div className="max-h-screen overflow-y-auto">
         <div
-          className={`bg-${bgColor}-300 flex flex-row text-center justify-center items-center px-4 py-3`}
+          className={`${bgColor} flex flex-row text-center justify-center items-center px-4 py-3`}
         >
           <h2 className="text-2xl font-semibold text-center">{title}</h2>
           <span className="text-gray-700 text-sm font-semibold ml-2">
@@ -19,7 +19,7 @@ const TaskList = () => {
           </span>
         </div>
         {tasks.length === 0 ? (
-          <Skeleton height={30} count={3} highlightColor={`${bgColor}`}/>
+          <Skeleton height={30} count={3} highlightColor="lightgray"/>
         ) : (
           <div className="max-h-96 overflow-y-auto">
             <ul className="divide-y divide-gray-100">
@@ -44,17 +44,17 @@ const TaskList = () => {
           {renderTaskList(
             tasks.filter((task) => task.status === "Todo"),
             "Todo",
-            "gray"
+            "bg-slate-300"
           )}
           {renderTaskList(
             tasks.filter((task) => task.status === "In Progress"),
             "In Progress",
-            "sky"
+            "bg-sky-300"
           )}
           {renderTaskList(
             tasks.filter((task) => task.status === "Completed"),
             "Completed",
-            "green"
+            "bg-green-300"
           )}
         </>
       </div>
