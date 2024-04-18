@@ -53,7 +53,7 @@ const TaskItem = ({ task, key }) => {
                     //  onClick={(e) => { e.stopPropagation(); navigate(`/edit-task/${task._id}`, { state: task }) }}
                     onClick={handleShowUpdateModal}
                 >
-                    <div className="p-1 bg-slate-300 rounded-md transition-colors duration-300 ease-in-out" title='edit'>
+                    <div className="p-1 bg-slate-300 rounded-md cursor-pointer transition-colors duration-300 ease-in-out" title='edit'>
                         <PencilSquareIcon className="h-5 w-5" aria-hidden="true" />
                     </div>
                 </div>

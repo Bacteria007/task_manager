@@ -3,7 +3,6 @@ import { useNavigate } from "react-router-dom";
 import { PrimaryBtn } from "../components/PrimaryBtn";
 
 const Profile = () => {
-  const { serverUrl } = useAppContext();
   const navigate=useNavigate()
   const role = localStorage.getItem("role")
   const name = localStorage.getItem("name")
