@@ -38,12 +38,12 @@ const TaskList = () => {
           <div className="bg-gray-300 flex flex-row text-center justify-center items-center px-4 py-3">
             <h2 className="text-2xl font-semibold text-center">Todo</h2>
             <span className="text-gray-700  text-sm font-semibold ml-2">
-              ({todoTasks.length > [] ? todoTasks.length : 0})
+              ({todoTasks.length > 0 ? todoTasks.length : 0})
             </span>
           </div>
           <div className="max-h-96  overflow-y-scroll">
             <ul className="divide-y divide-gray-100">
-              {todoTasks.length > 0 ? todoTasks.slice(0, 5).map((task, index) => (
+              {todoTasks.length > 0 ? todoTasks.map((task, index) => (
                 <TaskItem key={index} task={task} />
               ))
                 : <NoItems />
@@ -60,7 +60,7 @@ const TaskList = () => {
           </div>
           <div className="max-h-96 overflow-y-auto">
             <ul className="divide-y divide-gray-100">
-              {inProgressTasks.length > 0 ? inProgressTasks.slice(0, 5).map((task, index) => (
+              {inProgressTasks.length > 0 ? inProgressTasks.map((task, index) => (
                 <TaskItem key={index} task={task} />
               ))
                 : <NoItems />
@@ -77,7 +77,7 @@ const TaskList = () => {
           </div>
           <div className="max-h-96 overflow-y-auto">
             <ul className="divide-y divide-gray-100">
-              {completedTasks.length > 0 ? completedTasks.slice(0, 5).map((task, index) => (
+              {completedTasks.length > 0 ? completedTasks.map((task, index) => (
                 <TaskItem key={index} task={task} />
               ))
                 : <NoItems />

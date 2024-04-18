@@ -12,6 +12,7 @@ const NewTaskForm = ({ onClose }) => {
     status: 'Todo'
   })
   const addTask = () => {
+    console.log(newTask);
     ApiCaller(`${serverUrl}/task/add`, newTask, token)
   }
   return (
