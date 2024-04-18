@@ -6,6 +6,10 @@ const taskController = require('./src/controllers/task_controller');
 app.use("/auth", authentication)
 app.use("/task", taskController)
 
+app.get("/",(req,res)=>{
+  res.send('helllo')
+})
 app.listen(8881, () => {
   console.log(`Server is running on port 8881`);
+  
 });
