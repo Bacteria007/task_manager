@@ -3,7 +3,7 @@ import NewTaskForm from './NewTaskForm'
 import {PrimaryBtn} from './PrimaryBtn';
 import { useAppContext } from '../context/AppContext';
 import { Disclosure, Menu, Transition } from '@headlessui/react'
-import { Bars3Icon, ShoppingCartIcon, XMarkIcon } from '@heroicons/react/24/outline'
+import { Bars3Icon, ShoppingCartIcon, UserIcon, XMarkIcon } from '@heroicons/react/24/outline'
 import { Link, Navigate, useNavigate } from 'react-router-dom'
 
 
@@ -14,19 +14,7 @@ function classNames(...classes) {
 export default function Navbar() {
     const navigate = useNavigate()
 
-    const [showModal, setShowModal] = useState(false);
-    const { userRole } = useAppContext()
-    const role = localStorage.getItem("role")
     const name = localStorage.getItem("name")
-    const email = localStorage.getItem("email")
-    console.log(userRole);
-    const handleShowModal = () => {
-        setShowModal(true);
-    };
-
-    const hideModal = () => {
-        setShowModal(false);
-    };
 
     const signout = () => {
         localStorage.setItem("name", '')
@@ -63,7 +51,9 @@ export default function Navbar() {
                                                     <Menu.Button className="relative flex max-w-xs items-center rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
                                                         <span className="absolute -inset-1.5" />
                                                         <span className="sr-only">Open user menu</span>
-                                                        <div className="text-sm font-medium leading-none text-gray-400">{name}</div>
+                                                        <div className="text-sm font-medium leading-none text-gray-400">
+                                                            <UserIcon className='w-7 h-7'/>
+                                                            </div>
                                                     </Menu.Button>
                                                 </div>
                                                 <Transition

@@ -1,20 +1,24 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {PrimaryBtn} from "./PrimaryBtn";
 import { useAppContext } from "../context/AppContext";
 import ApiCaller from "../utilities/ApiCaller";
 
 const NewTaskForm = ({ onClose }) => {
-  const { statusOptions, serverUrl, } = useAppContext()
+  const { statusOptions, serverUrl, getAllTasks} = useAppContext()
   const token = localStorage.getItem("token")
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
-    status: 'Todo'
+    status: ''
   })
   const addTask = () => {
     console.log(newTask);
-    ApiCaller(`${serverUrl}/task/add`, newTask, token)
+    ApiCaller(`${serverUrl}/task/add`, newTask, token).then((res)=>{
+      console.log('savedTask',res.data.data);
+      getAllTasks()
+    })
   }
+
   return (
     <div className="overflow-y-auto overflow-x-hidden flex justify-center fixed top-0 right-0 left-0 z-50  w-full  md:inset-0 h-[calc(100%-1rem)] max-h-full">
       <div className="relative p-4 w-full max-w-md max-h-full">
@@ -50,7 +54,7 @@ const NewTaskForm = ({ onClose }) => {
             </button>
           </div>
           {/* Modal body */}
-          <form className="p-4 md:p-5" onSubmit={addTask}>
+          <form className="p-4 md:p-5">
             <div className="grid gap-4 mb-4 grid-cols-2">
               <div className="col-span-2">
                 <label
@@ -87,7 +91,7 @@ const NewTaskForm = ({ onClose }) => {
 
                 >
                   {statusOptions.map((opt) => (
-                    <option value={opt}>{opt}</option>
+                    <option value={opt}  onChange={(e) => setNewTask({ ...newTask, status: e.target.value })}>{opt}</option>
                   ))}
                 </select>
               </div>
@@ -105,7 +109,7 @@ const NewTaskForm = ({ onClose }) => {
                   placeholder="Write task description here"
                   value={newTask.description || ''} // Use task.description as the value
                   onChange={(e) => setNewTask({ ...newTask, description: e.target.value })} // Update task.description on change
-
+                  required
                 />
               </div>
             </div>

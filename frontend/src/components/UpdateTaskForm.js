@@ -7,7 +7,8 @@ import { CustomToast } from "./CustomToast";
 
 const UpdateTaskForm = ({ onClose, task }) => {
   const navigate = useNavigate()
-  const { statusOptions, serverUrl,token } = useAppContext()
+  const { statusOptions, serverUrl,getAllTasks } = useAppContext()
+  const token=localStorage.getItem("token")
   const [newTask, setNewTask] = useState(task)
   const [updateToast, setUpdateToast] = useState(false);
 
@@ -16,6 +17,7 @@ const UpdateTaskForm = ({ onClose, task }) => {
       if (res.data.status === true) {
         showUpdateToast()
         setNewTask(res.data.data);
+        getAllTasks()
         navigate("/")
       } else {
         alert(res.data.message)

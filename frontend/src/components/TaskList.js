@@ -5,8 +5,8 @@ import ApiCaller from "../utilities/ApiCaller";
 import { useAppContext } from "../context/AppContext";
 
 const TaskList = () => {
-  const { serverUrl } = useAppContext()
-  const [tasks, setTasks] = useState([])
+  const { serverUrl,tasks } = useAppContext()
+  // const [tasks, setTasks] = useState([])
   const token=localStorage.getItem("token")
 
   const todoTasks = tasks.length > 0 ? tasks.filter((task) => task.status === "Todo") : [];
@@ -14,23 +14,23 @@ const TaskList = () => {
   const completedTasks = tasks.length > 0 ? tasks.filter((task) => task.status === "Completed") : [];
   // console.log(todoTasks, inProgressTasks, completedTasks);
 
-  const getAllTasks = () => {
-    ApiCaller(`${serverUrl}/task/get-tasks`, {}, token).then(async (res) => {
-      const tasks = await res.data.data
-      if (res.data.status) {
-        setTasks(tasks)
-        console.log(res.data.data);
-      } else {
-        console.log(res.data.message)
-      }
-    })
-      .catch((error) => {
-        console.error("Error:", error);
-      });
-  }
-  useEffect(() => {
-    getAllTasks()
-  }, [])
+  // const getAllTasks = () => {
+  //   ApiCaller(`${serverUrl}/task/get-tasks`, {}, token).then(async (res) => {
+  //     const tasks = await res.data.data
+  //     if (res.data.status) {
+  //       setTasks(tasks)
+  //       console.log(res.data.data);
+  //     } else {
+  //       console.log(res.data.message)
+  //     }
+  //   })
+  //     .catch((error) => {
+  //       console.error("Error:", error);
+  //     });
+  // }
+  // useEffect(() => {
+  //   getAllTasks()
+  // }, [])
   return (
     <div className="flex justify-center mt-10">
       <div className="grid lg:grid-cols-3 sm:col-span-1 gap-4 w-4/5 self-center">

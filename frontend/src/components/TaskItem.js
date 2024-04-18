@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState,useEffect } from 'react'
 import { PencilSquareIcon, TrashIcon, } from '@heroicons/react/20/solid'
 import { DeleteToast } from './CustomToast'
 import { Link, useNavigate } from 'react-router-dom'
@@ -8,10 +8,12 @@ import UpdateTaskForm from './UpdateTaskForm'
 
 
 const TaskItem = ({ task, key }) => {
-    const { serverUrl, token, userRole } = useAppContext()
+    const { serverUrl,  userRole,getAllTasks } = useAppContext()
     const navigate = useNavigate()
+    const token=localStorage.getItem("token")
     const role = localStorage.getItem("role")
     const [deleteToast, setDeleteToast] = useState(false)
+    
     const showDeleteToast = (e) => {
         e.stopPropagation();
         setDeleteToast(true);
@@ -20,10 +22,11 @@ const TaskItem = ({ task, key }) => {
         }, 3000);
     };
     const hideDeleteToast = () => setDeleteToast(false);
-    const handleDelete = () => {
+    const handleDelete = (e) => {
         ApiCaller(`${serverUrl}/task/${task._id}/delete`, {}, token).then((res) => {
             if (res.data.status) {
-                showDeleteToast()
+                getAllTasks()
+                showDeleteToast(e)
             } else {
                 alert(res.data.message)
             }
@@ -38,7 +41,9 @@ const TaskItem = ({ task, key }) => {
     const hideUpdateModal = () => {
         setShowUpdateModal(false);
     };
-
+// useEffect(()=>{
+//     getAllTasks()
+//   },[handleDelete])
     return (
         <li key={key} className="flex gap-x-6 py-5 px-5  hover:bg-gray-100">
             <Link to={`${task._id}/task_detail`} className="min-w-0 flex-auto ">

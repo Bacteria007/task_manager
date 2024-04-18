@@ -1,14 +1,19 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Navbar from '../components/Navbar';
 import TaskList from '../components/TaskList';
 import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import { FloatingBtn } from '../components/PrimaryBtn';
 import NewTaskForm from '../components/NewTaskForm';
+import { useAppContext } from '../context/AppContext';
 
 const Dashboard = () => {
     const role = localStorage.getItem("role");
-    const [showModal, setShowModal] = useState(false);
+    const { getAllTasks,tasks } = useAppContext()
 
+    const [showModal, setShowModal] = useState(false);
+    useEffect(() => {
+        getAllTasks()
+      }, [])
     const handleShowModal = () => {
         setShowModal(true);
     };

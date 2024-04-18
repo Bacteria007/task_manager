@@ -86,7 +86,9 @@ router.post("/:taskId/update", authenticateUser, async (req, res) => {
         }
 
         // Find the task by ID
-        const updatedTask = await Task.findByIdAndUpdate(taskId, req.body, {
+        const updatedTask = await Task.findByIdAndUpdate(taskId, {
+            title:req.body.title,description:req.body.description,status:req.body.status
+        }, {
             new: true,
         });
         if (!updatedTask) {
