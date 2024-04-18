@@ -115,16 +115,7 @@ export default function Navbar() {
                             <Disclosure.Panel className="md:hidden">
 
                                 <div className="border-t border-gray-700 pb-3 pt-4">
-                                    <div className="flex justify-between">
-                                        <div className='flex items-center px-5'>
-
-                                            <div className="ml-3">
-                                                <div className="text-base font-medium leading-none text-white">{name}</div>
-                                                <div className="text-sm font-medium leading-none text-gray-400">{email}</div>
-                                            </div>
-                                        </div>
-
-                                    </div>
+                                   
                                     <div className="mt-3 space-y-1 px-2">
                                         {userNavigation.map((item) => (
                                             <Disclosure.Button

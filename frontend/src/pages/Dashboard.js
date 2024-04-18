@@ -21,14 +21,15 @@ const Dashboard = () => {
         <>
             <Navbar />
             <TaskList />
-            <FloatingBtn handleClick={handleShowModal} title={"New Task"} showplus={true} />
+            {role == 'admin' && <FloatingBtn handleClick={handleShowModal} title={"New Task"} showplus={true} />}
             {showModal && (
                 <>
                     <NewTaskForm onClose={hideModal} />
                     <div
-                        className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-40"
+                        className="top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50"
                         onClick={hideModal}
-                    ></div>
+                    >
+                    </div>
                 </>
             )}
         </>

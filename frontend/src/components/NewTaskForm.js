@@ -49,7 +49,7 @@ const NewTaskForm = ({ onClose }) => {
             </button>
           </div>
           {/* Modal body */}
-          <form className="p-4 md:p-5" onSubmit={(data) => console.log(data)}>
+          <form className="p-4 md:p-5" onSubmit={addTask}>
             <div className="grid gap-4 mb-4 grid-cols-2">
               <div className="col-span-2">
                 <label
