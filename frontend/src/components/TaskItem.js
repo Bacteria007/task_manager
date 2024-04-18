@@ -10,12 +10,11 @@ import UpdateTaskForm from './UpdateTaskForm'
 const TaskItem = ({ task, key }) => {
     const { serverUrl, token, userRole } = useAppContext()
     const navigate = useNavigate()
-    const role=localStorage.getItem("role")
+    const role = localStorage.getItem("role")
     const [deleteToast, setDeleteToast] = useState(false)
     const showDeleteToast = (e) => {
         e.stopPropagation();
         setDeleteToast(true);
-        // Hide the toast after 1 second
         setTimeout(() => {
             setDeleteToast(false);
         }, 3000);
@@ -41,28 +40,36 @@ const TaskItem = ({ task, key }) => {
     };
 
     return (
-        <li key={key} className="flex justify-between gap-x-6 py-5 px-5 hover:bg-gray-100">
-            <div className="flex min-w-0 gap-x-4">
-                <Link to={`${task._id}/task_detail`} className="min-w-0 flex-auto">
+        <li key={key} className="flex gap-x-6 py-5 px-5  hover:bg-gray-100">
+            <Link to={`${task._id}/task_detail`} className="min-w-0 flex-auto ">
+
+                <div className="flex min-w-0 gap-x-4 flex-col" >
                     <p className="text-lg font-semibold leading-6 text-gray-900">{task.title}</p>
                     <p className="mt-1 truncate text-xs leading-5 text-gray-500">{task.description}</p>
-                </Link>
-            </div>
-            <div className='flex flex-row'>
-                {role !== "user" && <div className='cursor-pointer mr-1'
-                    //  onClick={(e) => { e.stopPropagation(); navigate(`/edit-task/${task._id}`, { state: task }) }}
-                    onClick={handleShowUpdateModal}
-                >
-                    <div className="p-1 bg-slate-300 rounded-md cursor-pointer transition-colors duration-300 ease-in-out" title='edit'>
-                        <PencilSquareIcon className="h-5 w-5" aria-hidden="true" />
-                    </div>
+
                 </div>
-                }
-                {role == "admin" && <div className='cursor-pointer ml-1' onClick={handleDelete}>
-                    <div className="p-1 bg-red-300 rounded-md transition-colors duration-300 ease-in-out" title='delete'>
-                        <TrashIcon className="h-5 w-5" aria-hidden="true" />
+            </Link>
+            <div className='flex flex-row '>
+                <div>
+
+                    {role !== "user" && <div className='cursor-pointer mr-1'
+                        //  onClick={(e) => { e.stopPropagation(); navigate(`/edit-task/${task._id}`, { state: task }) }}
+                        onClick={handleShowUpdateModal}
+                    >
+                        <div className="p-1 bg-slate-300 rounded-md cursor-pointer transition-colors duration-300 ease-in-out">
+                            <PencilSquareIcon className="h-5 w-5" aria-hidden="true" />
+                        </div>
                     </div>
-                </div>}
+                    }
+                </div>
+                <div>
+
+                    {role == "admin" && <div className='cursor-pointer ml-1' onClick={handleDelete}>
+                        <div className="p-1 bg-red-300 rounded-md transition-colors duration-300 ease-in-out">
+                            <TrashIcon className="h-5 w-5" aria-hidden="true" />
+                        </div>
+                    </div>}
+                </div>
                 {deleteToast && <DeleteToast message={"task deleted"} closeToast={hideDeleteToast} />}
                 {showUpdateModal && (
                     <>
@@ -75,6 +82,7 @@ const TaskItem = ({ task, key }) => {
                 )}
             </div>
         </li>
+
     )
 }
 

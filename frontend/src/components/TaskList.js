@@ -12,7 +12,7 @@ const TaskList = () => {
   const todoTasks = tasks.length > 0 ? tasks.filter((task) => task.status === "Todo") : [];
   const inProgressTasks = tasks.length > 0 ? tasks.filter((task) => task.status === "In Progress") : [];
   const completedTasks = tasks.length > 0 ? tasks.filter((task) => task.status === "Completed") : [];
-  console.log(todoTasks, inProgressTasks, completedTasks);
+  // console.log(todoTasks, inProgressTasks, completedTasks);
 
   const getAllTasks = () => {
     ApiCaller(`${serverUrl}/task/get-tasks`, {}, token).then(async (res) => {

@@ -1,26 +1,27 @@
-import React, { useState } from 'react'
+import React, { useState } from 'react';
 import Navbar from '../components/Navbar';
 import TaskList from '../components/TaskList';
-import {   PlusCircleIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
+import { PlusCircleIcon } from '@heroicons/react/24/outline';
 import { FloatingBtn } from '../components/PrimaryBtn';
 import NewTaskForm from '../components/NewTaskForm';
 
 const Dashboard = () => {
-    const role = localStorage.getItem("role")
+    const role = localStorage.getItem("role");
     const [showModal, setShowModal] = useState(false);
 
     const handleShowModal = () => {
-          setShowModal(true);
-      };
-   const hideModal = () => {
-          setShowModal(false);
-      };
+        setShowModal(true);
+    };
+
+    const hideModal = () => {
+        setShowModal(false);
+    };
 
     return (
         <>
             <Navbar />
             <TaskList />
-            {role == "admin" && <FloatingBtn handleClick={handleShowModal} title={"New Task"} showplus={true} />}
+            <FloatingBtn handleClick={handleShowModal} title={"New Task"} showplus={true} />
             {showModal && (
                 <>
                     <NewTaskForm onClose={hideModal} />
@@ -31,7 +32,7 @@ const Dashboard = () => {
                 </>
             )}
         </>
-    )
-}
+    );
+};
 
 export default Dashboard;
