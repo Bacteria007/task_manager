@@ -26,7 +26,7 @@ export const PrimaryBtn = ({ handleClick, title, showplus }) => {
 }
 export const FloatingBtn = ({ handleClick, title, showplus }) => {
   return (
-    <div className='inset-0 flex justify-end items-end p-4'>
+    <div className='fixed bottom-4 right-4'>
       <button
         onClick={() => handleClick()}
         type="submit"

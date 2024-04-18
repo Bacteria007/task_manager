@@ -7,7 +7,7 @@ const router = express.Router();
 // API endpoint for adding a new task
 router.post("/add", authenticateUser, async (req, res) => {
     try {
-        const { title, description } = req.body;
+        const { title, description,status } = req.body;
 
         // Check if the user has permission to add tasks
         const user = await User.findById(req.user._id);
@@ -23,6 +23,7 @@ router.post("/add", authenticateUser, async (req, res) => {
         const newTask = new Task({
             title: title,
             description: description,
+            status:status,
             createdBy: req.user._id,
         });
 

@@ -8,7 +8,7 @@ import { useAppContext } from '../context/AppContext';
 
 const Dashboard = () => {
     const role = localStorage.getItem("role");
-    const { getAllTasks,tasks } = useAppContext()
+    const { getAllTasks } = useAppContext()
 
     const [showModal, setShowModal] = useState(false);
     useEffect(() => {
@@ -31,7 +31,7 @@ const Dashboard = () => {
                 <>
                     <NewTaskForm onClose={hideModal} />
                     <div
-                        className="top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50"
+                        className="fixed top-0 left-0 w-full h-full bg-gray-800 bg-opacity-50 z-40"
                         onClick={hideModal}
                     >
                     </div>

@@ -7,8 +7,8 @@ import { useAppContext } from '../context/AppContext'
 import UpdateTaskForm from './UpdateTaskForm'
 
 
-const TaskItem = ({ task, key }) => {
-    const { serverUrl,  userRole,getAllTasks } = useAppContext()
+const TaskItem = ({ task, index }) => {
+    const { serverUrl, getAllTasks } = useAppContext()
     const navigate = useNavigate()
     const token=localStorage.getItem("token")
     const role = localStorage.getItem("role")
@@ -17,6 +17,7 @@ const TaskItem = ({ task, key }) => {
     const showDeleteToast = (e) => {
         e.stopPropagation();
         setDeleteToast(true);
+        navigate('/')
         setTimeout(() => {
             setDeleteToast(false);
         }, 3000);
@@ -24,10 +25,14 @@ const TaskItem = ({ task, key }) => {
     const hideDeleteToast = () => setDeleteToast(false);
     const handleDelete = (e) => {
         ApiCaller(`${serverUrl}/task/${task._id}/delete`, {}, token).then((res) => {
-            if (res.data.status) {
+            getAllTasks()
+        
+            if (res.data.status === true) {
                 getAllTasks()
                 showDeleteToast(e)
+                
             } else {
+                getAllTasks()
                 alert(res.data.message)
             }
         })
@@ -41,11 +46,9 @@ const TaskItem = ({ task, key }) => {
     const hideUpdateModal = () => {
         setShowUpdateModal(false);
     };
-// useEffect(()=>{
-//     getAllTasks()
-//   },[handleDelete])
+
     return (
-        <li key={key} className="flex gap-x-6 py-5 px-5  hover:bg-gray-100">
+        <li key={index} className="flex gap-x-6 py-5 px-5  hover:bg-gray-100">
             <Link to={`${task._id}/task_detail`} className="min-w-0 flex-auto ">
 
                 <div className="flex min-w-0 gap-x-4 flex-col" >
@@ -54,7 +57,7 @@ const TaskItem = ({ task, key }) => {
 
                 </div>
             </Link>
-            <div className='flex flex-row '>
+            <div className='flex flex-row'>
                 <div>
 
                     {role !== "user" && <div className='cursor-pointer mr-1'

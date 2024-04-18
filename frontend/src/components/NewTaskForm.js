@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import {PrimaryBtn} from "./PrimaryBtn";
+import { PrimaryBtn } from "./PrimaryBtn";
 import { useAppContext } from "../context/AppContext";
 import ApiCaller from "../utilities/ApiCaller";
 
 const NewTaskForm = ({ onClose }) => {
-  const { statusOptions, serverUrl, getAllTasks} = useAppContext()
+  const { statusOptions, serverUrl, getAllTasks } = useAppContext()
   const token = localStorage.getItem("token")
+
   const [newTask, setNewTask] = useState({
     title: '',
     description: '',
@@ -13,9 +14,14 @@ const NewTaskForm = ({ onClose }) => {
   })
   const addTask = () => {
     console.log(newTask);
-    ApiCaller(`${serverUrl}/task/add`, newTask, token).then((res)=>{
-      console.log('savedTask',res.data.data);
-      getAllTasks()
+    ApiCaller(`${serverUrl}/task/add`,newTask , token).then((res) => {
+      if (res.data.status === true) {
+        console.log('savedTask', res.data.data);
+        getAllTasks()
+      } else {
+        alert(res.data.message);
+
+      }
     })
   }
 
@@ -86,14 +92,14 @@ const NewTaskForm = ({ onClose }) => {
                 <select
                   id="status"
                   className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full p-2.5 dark:bg-gray-600 dark:border-gray-500 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                  value={newTask.status || ''} // Use task.status as the value
-                  onChange={(e) => setNewTask({ ...newTask, status: e.target.value })} // Update task.status on change                               
-
+                  value={newTask.status || ''} // Use newTask.status as the value
+                  onChange={(e) => setNewTask({ ...newTask, status: e.target.value }) }                                
                 >
-                  {statusOptions.map((opt) => (
-                    <option value={opt}  onChange={(e) => setNewTask({ ...newTask, status: e.target.value })}>{opt}</option>
+                  {statusOptions.map((opt,index) => (
+                    <option key={index} value={opt}>{opt}</option> 
                   ))}
                 </select>
+
               </div>
               <div className="col-span-2">
                 <label
